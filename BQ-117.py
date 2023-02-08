@@ -1,13 +1,16 @@
+# Importing packages and methods
 from seleniumwire import webdriver
 from selenium.webdriver.chrome.service import Service
 from time import sleep
 
+# Defining parameters
 s = Service(executable_path='chromedriver.exe')
 
 driver = webdriver.Chrome(service=s)
 
 driver.get('https://test.beeznests.com')
 
+# Checking page response status codes and printing them to the console
 for request in driver.requests:
     if request.response:
         print(
