@@ -1,1 +1,28 @@
-# Issue BQ-117 Automation
+from seleniumwire import webdriver
+from selenium.webdriver.chrome.service import Service
+from time import sleep
+
+s = Service(executable_path='chromedriver.exe')
+
+driver = webdriver.Chrome(service=s)
+
+driver.get('https://test.beeznests.com')
+
+for request in driver.requests:
+    if request.response:
+        print(
+            request.url,
+            request.response.status_code,
+            request.response.headers['Content-Type']
+        )
+
+# Checking that we're on the correct URL address and we're seeing correct title
+if driver.current_url == 'https://test.beeznests.com/' and driver.title == 'Beeznests':
+    print(f'We\'re at Beeznests -- {driver.current_url}')
+    print(f'We\'re seeing title message -- "Beeznests"')
+    sleep(2)
+    driver.close()
+else:
+    print(f'We\'re not at the correct homepage. Check your code!')
+    driver.close()
+    driver.quit()
