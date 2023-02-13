@@ -8,6 +8,7 @@ s = Service(executable_path='chromedriver.exe')
 
 driver = webdriver.Chrome(service=s)
 
+# Loading Beeznest site
 driver.get('https://test.beeznests.com')
 
 # Checking page response status codes and printing them to the console
